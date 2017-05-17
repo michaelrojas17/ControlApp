@@ -2,15 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
+        <!--<item-->
+            <!--android:id="@+id/principal"-->
+            <!--android:icon="@drawable/ic_menu_send"-->
+            <!--android:title="principal"/>-->
+
         <item
             android:id="@+id/enviarTexto"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Enviar Contenido" />
 
+
         <item
             android:id="@+id/configuracion"
             android:icon="@drawable/ic_menu_manage"
             android:title="Configuración de Pantalla" />
+
     </group>
 
     <!--<item android:title="Communicate">-->

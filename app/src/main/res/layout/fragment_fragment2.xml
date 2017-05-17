@@ -4,34 +4,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/fragment2color"
-    android:background="#0A1B2A"
+    android:background="@drawable/fondo"
     tools:context="michaelrojas.controlapp.MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment layout, el color del fondo era #0A1B2A -->
+
+
+    <TextView
+        android:id="@+id/tvTituloSeleccionarColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="#0A1B2A"
+        android:textColor="#FFFFFF"
+        android:text="Color del Texto"
+        android:gravity="center"
+        android:layout_marginTop="74dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSeleccionarColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seleccionar Color"
-        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteX="150p"
         tools:layout_editor_absoluteY="202dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="242dp" />
+        android:layout_below="@+id/tvTituloSeleccionarColor"
+        android:layout_alignStart="@+id/tvTituloSeleccionarColor"
+        android:layout_marginTop="32dp" />
 
     <TextView
-        android:id="@+id/SelectedColor"
+        android:id="@+id/tvHexSelectedColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button2"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="49dp"
-        android:layout_marginTop="119dp"
         android:textColor="#FFFFFF"
-        android:text="TextView" />
+        android:text="Ninguno"
+        android:gravity="center"
+
+        android:layout_marginStart="20dp"
+        android:layout_alignBaseline="@+id/btnSeleccionarColor"
+        android:layout_alignBottom="@+id/btnSeleccionarColor"
+        android:layout_toEndOf="@+id/btnSeleccionarColor" />
+
+
+    <Button
+        android:id="@+id/btnMuestraColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="202dp"
+        android:background="#FFFFFF"
+        android:paddingBottom="3sp"
+        android:layout_marginEnd="15dp"
+        android:layout_alignBaseline="@+id/tvHexSelectedColor"
+        android:layout_alignBottom="@+id/tvHexSelectedColor"
+        android:layout_alignEnd="@+id/tvTituloSeleccionarColor" />
 
 
 </RelativeLayout>

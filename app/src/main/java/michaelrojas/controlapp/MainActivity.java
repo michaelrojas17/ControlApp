@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +19,8 @@ import android.view.MenuItem;
 import android.graphics.Color;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Fragment1.OnFragmentInteractionListener, Fragment2.OnFragmentInteractionListener  {
+        implements NavigationView.OnNavigationItemSelectedListener, Fragment1.OnFragmentInteractionListener, Fragment2.OnFragmentInteractionListener,
+        Fragment3.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,18 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle("¡Bienvenido!");
+
+        //// Esto permite cargar el fragment de Bienvenida
+        Fragment3 fragment =  new Fragment3();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.add(R.id.content_main, fragment);
+        ft.commit();
+
+
+
 
 
 
@@ -72,11 +87,13 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction = true;
 
 
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
+        //} else if (id == R.id.principal) {
+            //Titulo de la Actividad de Bienvenida
 
+//        } else if (id == R.id.nav_send) {
         }
+
+
 
 
         if(FragmentTransaction ){

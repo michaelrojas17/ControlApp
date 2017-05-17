@@ -1,41 +1,25 @@
 package michaelrojas.controlapp;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-
-import net.margaritov.preference.colorpicker.ColorPickerDialog;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Fragment2.OnFragmentInteractionListener} interface
+ * {@link Fragment3.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class Fragment2 extends Fragment {
+public class Fragment3 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    Button btnSeleccionaColor, btnMuestraColor;
-    TextView colornumber;
-
-    ColorPickerDialog colorPickerDialog;
-    int color = Color.parseColor("#33b5e5");
-    String cadena;
-
-
-
-    public Fragment2() {
+    public Fragment3() {
         // Required empty public constructor
     }
 
@@ -44,45 +28,7 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_fragment2, container, false);
-
-
-        btnSeleccionaColor =(Button)view.findViewById(R.id.btnSeleccionarColor);
-        btnMuestraColor =(Button)view.findViewById(R.id.btnMuestraColor);
-        colornumber = (TextView)view.findViewById(R.id.tvHexSelectedColor);
-
-
-        btnSeleccionaColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorPickerDialog = new ColorPickerDialog(getContext(), color);
-                colorPickerDialog.setAlphaSliderVisible(true);
-                colorPickerDialog.setHexValueEnabled(true);
-                colorPickerDialog.setTitle("Selecciona el color:");
-
-                colorPickerDialog.setOnColorChangedListener(new ColorPickerDialog.OnColorChangedListener() {
-                    @Override
-                    public void onColorChanged(int i) {
-                        color=i;
-                       // layout.setBackgroundColor(color);
-                        btnMuestraColor.setBackgroundColor(color);
-                        cadena=Integer.toHexString(color);
-                        colornumber.setText("#"+cadena.substring(2,8));
-
-                    }
-                });
-
-
-                colorPickerDialog.show();
-
-
-
-
-            }
-
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_fragment3, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
