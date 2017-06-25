@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/fragment2color"
-    android:background="@drawable/fondo"
+    android:background="#0B423C"
     tools:context="michaelrojas.controlapp.MainActivity">
 
     <!-- TODO: Update blank fragment layout, el color del fondo era #0A1B2A -->
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:background="#0A1B2A"
+        android:background="#042A40"
         android:textColor="#FFFFFF"
         android:text="Color del Texto"
         android:gravity="center"
@@ -29,8 +29,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seleccionar Color"
-        tools:layout_editor_absoluteX="150p"
-        tools:layout_editor_absoluteY="202dp"
         android:layout_below="@+id/tvTituloSeleccionarColor"
         android:layout_alignStart="@+id/tvTituloSeleccionarColor"
         android:layout_marginTop="32dp" />
