@@ -17,7 +17,7 @@
         <item
             android:id="@+id/configuracion"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Configuración de Pantalla" />
+            android:title="Configuración WiFi " />
 
     </group>
 
