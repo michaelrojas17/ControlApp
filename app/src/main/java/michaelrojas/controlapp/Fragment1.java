@@ -114,7 +114,7 @@ public class Fragment1 extends Fragment {
                         @Override
                         public void onSuccess(IMqttToken asyncActionToken) {
                             // We are connected
-                            Toast.makeText(getActivity(), "Connected!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Connected(1)!!", Toast.LENGTH_LONG).show();
                             setSubscription();
                         }
 

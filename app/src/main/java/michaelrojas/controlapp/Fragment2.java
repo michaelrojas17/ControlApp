@@ -2,35 +2,38 @@ package michaelrojas.controlapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-import net.margaritov.preference.colorpicker.ColorPickerDialog;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Fragment2.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
+
+
 public class Fragment2 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    Button btnSeleccionaColor, btnMuestraColor;
-    TextView colornumber;
+    static String IP_SERVER = "http://192.168.4.1/";
 
-    ColorPickerDialog colorPickerDialog;
-    int color = Color.parseColor("#33b5e5");
+
+    Button btnEscanear, btnGuardar;
+    TextView etSSID, etPass;
+
+
+    ////////////*********************************
+
     String cadena;
 
 
@@ -47,43 +50,104 @@ public class Fragment2 extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_fragment2, container, false);
 
 
-        btnSeleccionaColor =(Button)view.findViewById(R.id.btnSeleccionarColor);
-        btnMuestraColor =(Button)view.findViewById(R.id.btnMuestraColor);
-        colornumber = (TextView)view.findViewById(R.id.tvHexSelectedColor);
+        btnGuardar = (Button)view.findViewById(R.id.btnGuardar);
+        btnEscanear = (Button)view.findViewById(R.id.btnEscanear);
+        etPass = (EditText)view.findViewById(R.id.etPass);
+        etSSID = (EditText)view.findViewById(R.id.etSSID);
 
 
-        btnSeleccionaColor.setOnClickListener(new View.OnClickListener() {
+
+
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                colorPickerDialog = new ColorPickerDialog(getContext(), color);
-                colorPickerDialog.setAlphaSliderVisible(true);
-                colorPickerDialog.setHexValueEnabled(true);
-                colorPickerDialog.setTitle("Selecciona el color:");
-
-                colorPickerDialog.setOnColorChangedListener(new ColorPickerDialog.OnColorChangedListener() {
-                    @Override
-                    public void onColorChanged(int i) {
-                        color=i;
-                       // layout.setBackgroundColor(color);
-                        btnMuestraColor.setBackgroundColor(color);
-                        cadena=Integer.toHexString(color);
-                        colornumber.setText("#"+cadena.substring(2,8));
-
-                    }
-                });
 
 
-                colorPickerDialog.show();
+                String parametroSSID = etSSID.getText().toString();
+                String parametroPasswd = etPass.getText().toString();
+
+                ConnectivityManager conMngr = (ConnectivityManager)
+                        getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo networkInfo = conMngr.getActiveNetworkInfo();
+
+                if(networkInfo != null && networkInfo.isConnected()){
+
+                    String url = IP_SERVER+"guardar_conf?ssid="+ parametroSSID +"&pass="+parametroPasswd;
 
 
+                    new SolicitaDatos().execute(url);
+                }else{
+                    Toast.makeText(getActivity(), "Ninguna conexion detectada", Toast.LENGTH_LONG).show();
 
+                }
 
             }
-
         });
+
+
+
+        btnEscanear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                ConnectivityManager conMngr = (ConnectivityManager)
+                        getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo networkInfo = conMngr.getActiveNetworkInfo();
+
+                if(networkInfo != null && networkInfo.isConnected()){
+
+                    String url = IP_SERVER+"escanear";
+
+
+                    new SolicitaDatos().execute(url);
+                }else{
+                    Toast.makeText(getActivity(), "Ninguna conexión detectada", Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+        });
+
+
+
+
+
+
 
         return view;
     }
+
+
+    private class SolicitaDatos extends AsyncTask<String, Void, String > {
+
+        @Override
+        protected String doInBackground(String... url) {
+            return Conexion.getData(url[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null){
+
+
+                if(resultado.contains("Configuracion Guardada")){
+                    Toast.makeText(getActivity(), "Configuracion Guardada...", Toast.LENGTH_LONG).show();
+                }
+
+            }else{
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

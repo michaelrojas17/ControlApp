@@ -10,55 +10,85 @@
     <!-- TODO: Update blank fragment layout, el color del fondo era #0A1B2A -->
 
 
+
     <TextView
-        android:id="@+id/tvTituloSeleccionarColor"
+        android:id="@+id/tvSSID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:background="#042A40"
         android:textColor="#FFFFFF"
-        android:text="Color del Texto"
-        android:gravity="center"
-        android:layout_marginTop="74dp"
+        android:text="SSID"
+        android:layout_marginTop="27dp"
         android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"/>
+        android:layout_marginEnd="15dp"
+        />
 
 
-    <Button
-        android:id="@+id/btnSeleccionarColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seleccionar Color"
-        android:layout_below="@+id/tvTituloSeleccionarColor"
-        android:layout_alignStart="@+id/tvTituloSeleccionarColor"
-        android:layout_marginTop="32dp" />
+    <EditText
+        android:id="@+id/etSSID"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:hint="nombre de la WiFi"
+        android:background="#FFFFFF"
+        android:textColorHint="#999999"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tvSSID"
+        android:layout_alignStart="@+id/tvSSID"
+        android:layout_alignEnd="@+id/tvSSID" />
+
+
 
     <TextView
-        android:id="@+id/tvHexSelectedColor"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvPass"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#042A40"
+        android:text="PASSWORD"
         android:textColor="#FFFFFF"
-        android:text="Ninguno"
-        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_below="@+id/etSSID"
+        android:layout_marginTop="54dp"
+        android:layout_alignStart="@+id/etSSID"
+        android:layout_alignEnd="@+id/etSSID" />
 
-        android:layout_marginStart="20dp"
-        android:layout_alignBaseline="@+id/btnSeleccionarColor"
-        android:layout_alignBottom="@+id/btnSeleccionarColor"
-        android:layout_toEndOf="@+id/btnSeleccionarColor" />
+
+
+    <EditText
+        android:id="@+id/etPass"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:hint="contraseña"
+        android:textColorHint="#999999"
+        android:background="#FFFFFF"
+        android:inputType="textPassword"
+        android:layout_below="@+id/tvPass"
+        android:layout_alignStart="@+id/tvPass"
+        android:layout_alignEnd="@+id/tvPass" />
+
+
 
 
     <Button
-        android:id="@+id/btnMuestraColor"
+        android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="202dp"
-        android:background="#FFFFFF"
-        android:paddingBottom="3sp"
-        android:layout_marginEnd="15dp"
-        android:layout_alignBaseline="@+id/tvHexSelectedColor"
-        android:layout_alignBottom="@+id/tvHexSelectedColor"
-        android:layout_alignEnd="@+id/tvTituloSeleccionarColor" />
+        android:text="Guardar"
+        android:layout_alignBaseline="@+id/btnEscanear"
+        android:layout_alignBottom="@+id/btnEscanear"
+        android:layout_toStartOf="@+id/btnEscanear"
+        android:layout_marginEnd="46dp" />
+
+    <Button
+        android:id="@+id/btnEscanear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Escanear"
+        android:layout_below="@+id/etPass"
+        android:layout_alignEnd="@+id/etPass"
+        android:layout_marginEnd="53dp" />
 
 
 </RelativeLayout>

@@ -37,6 +37,7 @@ dependencies {
     compile 'com.github.attenzione:android-ColorPickerPreference:9cbe9e7757'
     compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile('org.eclipse.paho:org.eclipse.paho.android.service:1.0.2') {
         exclude module: 'support-v4'
     }
