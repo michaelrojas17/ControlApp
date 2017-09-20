@@ -38,11 +38,11 @@ public class Fragment1 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    static String MQTTHOST = "tcp://io.adafruit.com:1883";
+    static String MQTTHOST = "tcp://192.168.0.150:1883";
     static String USERNAME = "mike921217";
-    static String PASSWORD = "62d2cbedd8c346cc8bfb4c029b26fcc3";
-    static String topicStr = USERNAME +"/feeds/Color";
-    static String topicStr2 = USERNAME +"/feeds/Mensaje";
+    static String PASSWORD = "921217";
+    static String topicStr = "Color";
+    static String topicStr2 = "Mensaje";
 
 
     MqttAndroidClient client;
@@ -137,7 +137,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String topic = USERNAME+"/feeds/Mensaje";
+                String topic = "Mensaje";
                 String message = "***Deleted***";
 
 
@@ -193,7 +193,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String topic = USERNAME+"/feeds/Mensaje";
+                String topic = "Mensaje";
                 String message = MensajeAEnviar.getText().toString();
 
 
