@@ -29,7 +29,8 @@ public class Fragment2 extends Fragment {
 
 
     Button btnEscanear, btnGuardar;
-    TextView etSSID, etPass;
+    TextView tvReinicio;
+    EditText etSSID, etPass;
 
 
     ////////////*********************************
@@ -51,9 +52,9 @@ public class Fragment2 extends Fragment {
 
 
         btnGuardar = (Button)view.findViewById(R.id.btnGuardar);
-        btnEscanear = (Button)view.findViewById(R.id.btnEscanear);
-        etPass = (EditText)view.findViewById(R.id.etPass);
-        etSSID = (EditText)view.findViewById(R.id.etSSID);
+        etPass = (EditText) view.findViewById(R.id.etPass);
+        etSSID = (EditText) view.findViewById(R.id.etSSID);
+        tvReinicio = (TextView) view.findViewById(R.id.tvReinicio);
 
 
 
@@ -79,39 +80,14 @@ public class Fragment2 extends Fragment {
 
                     new SolicitaDatos().execute(url);
                 }else{
-                    Toast.makeText(getActivity(), "Ninguna conexion detectada", Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-        });
-
-
-
-        btnEscanear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                ConnectivityManager conMngr = (ConnectivityManager)
-                        getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                NetworkInfo networkInfo = conMngr.getActiveNetworkInfo();
-
-                if(networkInfo != null && networkInfo.isConnected()){
-
-                    String url = IP_SERVER+"escanear";
-
-
-                    new SolicitaDatos().execute(url);
-                }else{
                     Toast.makeText(getActivity(), "Ninguna conexión detectada", Toast.LENGTH_LONG).show();
 
                 }
 
             }
         });
+
+
 
 
 
@@ -136,7 +112,8 @@ public class Fragment2 extends Fragment {
 
 
                 if(resultado.contains("Configuracion Guardada")){
-                    Toast.makeText(getActivity(), "Configuracion Guardada...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Configuración Guardada...", Toast.LENGTH_LONG).show();
+                    tvReinicio.setText("Configuración WiFi Guardada. Por favor, reinicie el controlador ESP...");
                 }
 
             }else{

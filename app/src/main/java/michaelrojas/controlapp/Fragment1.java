@@ -38,6 +38,14 @@ public class Fragment1 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
+    //static String MQTTHOST = "tcp://192.168.0.150:1883";
+    //static String MQTTHOST = "tcp://wifi-lights-control-broker.etowns.net:1883";
+    //static String MQTTHOST = "tcp://wledscontrolbroker.ddns.net:1883";
+
+    //static String MQTTHOST= "tcp://157.88.110.222:1883"; //Deberia ser un dominio...
+
+
     static String MQTTHOST = "tcp://192.168.0.150:1883";
     static String USERNAME = "mike921217";
     static String PASSWORD = "921217";
@@ -114,7 +122,7 @@ public class Fragment1 extends Fragment {
                         @Override
                         public void onSuccess(IMqttToken asyncActionToken) {
                             // We are connected
-                            Toast.makeText(getActivity(), "Connected(1)!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Broker Connected!!", Toast.LENGTH_LONG).show();
                             setSubscription();
                         }
 
@@ -138,7 +146,7 @@ public class Fragment1 extends Fragment {
             public void onClick(View v) {
 
                 String topic = "Mensaje";
-                String message = "***Deleted***";
+                String message = " ";
 
 
 
@@ -305,7 +313,7 @@ public class Fragment1 extends Fragment {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
                     // We are connected
-                    Toast.makeText(getActivity(), "Connected!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Broker Connected!!", Toast.LENGTH_LONG).show();
                     Conectado=1;
                     setSubscription();
                 }

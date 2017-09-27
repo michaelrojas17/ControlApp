@@ -10,6 +10,17 @@
     <!-- TODO: Update blank fragment layout, el color del fondo era #0A1B2A -->
 
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="27dp"
+        android:background="#042A40"
+        android:text="SSID"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvSSID"
@@ -75,20 +86,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Guardar"
-        android:layout_alignBaseline="@+id/btnEscanear"
-        android:layout_alignBottom="@+id/btnEscanear"
-        android:layout_toStartOf="@+id/btnEscanear"
-        android:layout_marginEnd="46dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/btnEscanear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Escanear"
-        android:layout_below="@+id/etPass"
-        android:layout_alignEnd="@+id/etPass"
-        android:layout_marginEnd="53dp" />
+    <TextView
+        android:id="@+id/tvReinicio"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:text=" "
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/btnGuardar"
+        android:layout_alignStart="@+id/etPass"
+        android:layout_alignEnd="@+id/etPass" />
 
 
 </RelativeLayout>
