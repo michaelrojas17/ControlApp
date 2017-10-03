@@ -9,6 +9,30 @@
 
 
     <TextView
+        android:id="@+id/tvMensajeModoConf"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:text=" "
+        android:gravity="center"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_toEndOf="@+id/swtModo" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitulo2"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="38dp"
+        android:layout_toStartOf="@+id/btnVerde"
+        android:layout_weight="1"
+        android:background="#Af0000"
+        android:gravity="center"
+        android:text="Rojo" />
+
+    <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,6 +83,7 @@
 
     <TextView
         android:id="@+id/tvMensajeLeido"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="35sp"
         android:background="#000000"
@@ -109,7 +134,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
 
 
     </LinearLayout>
@@ -149,6 +175,20 @@
         android:layout_alignBottom="@+id/btnVerde"
         android:layout_toEndOf="@+id/btnVerde"
         android:layout_marginStart="13dp" />
+
+
+
+    <Switch
+        android:id="@+id/swtModo"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_height="20sp"
+        android:text="¿próximo arranque en Modo conf.?"
+        android:background="#042A40"
+        android:layout_alignBaseline="@+id/tvMensajeModoConf"
+        android:layout_alignBottom="@+id/tvMensajeModoConf"
+        android:layout_alignStart="@+id/tvTitulo" />
 
 
 </RelativeLayout>

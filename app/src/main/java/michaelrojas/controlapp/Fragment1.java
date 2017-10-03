@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,19 +45,26 @@ public class Fragment1 extends Fragment {
     //static String MQTTHOST = "tcp://wifi-lights-control-broker.etowns.net:1883";
     //static String MQTTHOST = "tcp://wledscontrolbroker.ddns.net:1883";
 
-    //static String MQTTHOST= "tcp://157.88.110.222:1883"; //Deberia ser un dominio...
+    //static String MQTTHOST= "tcp://157.88.110.210:1883"; //Deberia ser un dominio...
+    //static String MQTTHOST = "tcp://wifi-lights-control-broker.etowns.net:1883"; //Wifi
+    static String MQTTHOST = "tcp://wledscontrolbroker.ddns.net:1883"; //Cable
 
 
-    static String MQTTHOST = "tcp://192.168.0.150:1883";
+    //static String MQTTHOST = "tcp://192.168.0.150:1883";
     static String USERNAME = "mike921217";
     static String PASSWORD = "921217";
-    static String topicStr = "Color";
-    static String topicStr2 = "Mensaje";
+    static String topicColor = "Color";
+    static String topicMensaje = "Mensaje";
+    static String topicModo = "Modo";
 
 
     MqttAndroidClient client;
-    TextView subText, MensajeLeido;
+    TextView subText, MensajeLeido, MensajeModo;
+    Button btnRojo, btnVerde, btnAzul, btnConectar;
+    Button btnEnviar,btnBorrar,btnDesconectar;
     EditText MensajeAEnviar;
+    Switch   SwitchModo;
+
     MqttConnectOptions options;
     Vibrator vibrator;
     Ringtone myRingtone;
@@ -77,21 +86,23 @@ public class Fragment1 extends Fragment {
 
 
 
-        Button btnConectar = (Button)view.findViewById(R.id.connBtn);
-        Button btnEnviar = (Button)view.findViewById(R.id.btnEnviarTexto);
-        Button btnBorrar = (Button)view.findViewById(R.id.btnBorrarMensaje);
-        Button btnDesconectar = (Button)view.findViewById(R.id.disconnbtn);
+        btnConectar = (Button)view.findViewById(R.id.connBtn);
+        btnEnviar = (Button)view.findViewById(R.id.btnEnviarTexto);
+        btnBorrar = (Button)view.findViewById(R.id.btnBorrarMensaje);
+        btnDesconectar = (Button)view.findViewById(R.id.disconnbtn);
+
+        btnRojo = (Button)view.findViewById(R.id.btnRojo);
+        btnVerde = (Button)view.findViewById(R.id.btnVerde);
+        btnAzul = (Button)view.findViewById(R.id.btnAzul);
+
+        SwitchModo = (Switch)view.findViewById(R.id.swtModo);
 
 
-        Button btnRojo = (Button)view.findViewById(R.id.btnRojo);
-        Button btnVerde = (Button)view.findViewById(R.id.btnVerde);
-        Button btnAzul = (Button)view.findViewById(R.id.btnAzul);
 
 
 
 
-
-        //subText = (TextView)view.findViewById(R.id.subText);
+        MensajeModo = (TextView)view.findViewById(R.id.tvMensajeModoConf);
         MensajeLeido = (TextView)view.findViewById(R.id.tvMensajeLeido);
         MensajeAEnviar = (EditText)view.findViewById(R.id.etTextoAEnviar);
 
@@ -231,7 +242,7 @@ public class Fragment1 extends Fragment {
             public void onClick(View v) {
 
 
-                String topic = topicStr;
+                String topic = topicColor;
                 String message = "Rojo";
 
                 if(Conectado==1) {
@@ -257,7 +268,7 @@ public class Fragment1 extends Fragment {
             public void onClick(View v) {
 
 
-                String topic = topicStr;
+                String topic = topicColor;
                 String message = "Verde";
 
                 if(Conectado==1) {
@@ -284,7 +295,7 @@ public class Fragment1 extends Fragment {
 
 
 
-                String topic = topicStr;
+                String topic = topicColor;
                 String message = "Azul";
 
                 if(Conectado==1) {
@@ -304,6 +315,77 @@ public class Fragment1 extends Fragment {
 
             }
         });
+
+
+        SwitchModo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked){
+
+
+                    String topic = topicModo;
+                    String message = "FF";
+
+                    if(Conectado==1) {
+
+                        try {
+
+                            client.publish(topic, message.getBytes(), 0, false);
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                       }
+
+                        Toast.makeText(getActivity(), "Se arrancará en modo confiuración !!!", Toast.LENGTH_LONG).show();
+                        MensajeModo.setText("Se reiniciará en modo configuracion!!");
+
+
+                    }else{
+
+                        Toast.makeText(getActivity(), "No connected", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+
+
+
+                }else{ //Si el boton esta en off
+
+                    String topic = topicModo;
+                    String message = "00";
+
+                    if(Conectado==1) {
+
+                        try {
+
+                           client.publish(topic, message.getBytes(), 0, false);
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(getActivity(), "Se arrancará en modo confiuración !!!", Toast.LENGTH_LONG).show();
+                        MensajeModo.setText(" ");
+
+
+                    }else{
+
+                        Toast.makeText(getActivity(), "No connected", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+
+                }
+
+            }
+        });
+
+
+
+
+
+
 
 
 
@@ -339,13 +421,13 @@ public class Fragment1 extends Fragment {
             public void messageArrived(String topic, MqttMessage message) throws Exception {
 
 
-                if(topic.equals(topicStr)) {
+                if(topic.equals(topicColor)) {
                     subText.setText(new String(message.getPayload()));
                     myRingtone.play();
                     vibrator.vibrate(500);
                 }
 
-                if(topic.equals(topicStr2)) {
+                if(topic.equals(topicMensaje)) {
                     MensajeLeido.setText(new String(message.getPayload()));
                     vibrator.vibrate(1000);
                 }
@@ -420,16 +502,16 @@ public class Fragment1 extends Fragment {
 
     private void setSubscription(){
 
-        //String[] topics={topicStr, topicStr2};
-        String topic=topicStr;
+
+        String topic=topicColor;
 
 
 
 
         try{
 
-            client.subscribe(topicStr, 0);
-            client.subscribe(topicStr2, 0);
+            client.subscribe(topicColor, 0);
+            client.subscribe(topicMensaje, 0);
 
         }catch(MqttException e){
             e.printStackTrace();
